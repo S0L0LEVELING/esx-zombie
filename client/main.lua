@@ -10,6 +10,23 @@ CreateThread(function()
   end
 end)
 
+CreateThread(function()
+  while true do
+    local Sleep = 10
+
+		for i=1, #CreatedZombies do
+			local Zombie = CreatedZombies[i]
+
+			if not IsPedDeadOrDying(Zombie) then 
+				SetPedAsNoLongerNeeded(Zombie)
+				DeleteEntity(Zombie)
+				table.remove(CreatedZombies, i)
+			end
+		end
+    Wait(Sleep)
+  end
+end)
+
 function CreateZombies()
 	local Ped = PlayerPedId()
 	local PedCoords = GetEntityCoords(Ped)
