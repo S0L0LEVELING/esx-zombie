@@ -1,13 +1,17 @@
 local CreatedZombies = {}
 
-CreateThread(function()
-  while true do
-    local Sleep = 5000
-    if #CreatedZombies < Config.MaxZombies then
-      CreateZombies()
-    end
-    Wait(Sleep)
-  end
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded',function()
+	Wait(10000 * 60)
+	CreateThread(function()
+		while true do
+			local Sleep = 5000
+			if #CreatedZombies < Config.MaxZombies then
+				CreateZombies()
+			end
+			Wait(Sleep)
+		end
+	end)
 end)
 
 CreateThread(function()
