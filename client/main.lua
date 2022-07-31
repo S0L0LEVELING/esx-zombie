@@ -7,6 +7,23 @@ CreateThread(function()
 	SetRelationshipBetweenGroups(5, GetHashKey("PLAYER"), GetHashKey("zombie"))
 	SetAiMeleeWeaponDamageModifier(1.5)
 
+	if Config.SafeZone.Enabled then
+		local SafeZone = Config.SafeZone.Center
+		local SafeZoneRadius = Config.SafeZone.radius
+		local SafeRadius = AddBlipForRadius(SafeZone, SafeZoneRadius)
+		local SafeIcon = AddBlipForCoord(SafeZone)
+		SetBlipColour (SafeRadius, 2)
+		SetBlipAlpha (SafeRadius, 200)
+		SetBlipSprite (SafeIcon, 685)
+		SetBlipScale  (SafeIcon, 0.8)
+		SetBlipColour (SafeIcon, 2)
+		SetBlipAsShortRange(SafeIcon, true)
+
+		BeginTextCommandSetBlipName('STRING')
+		AddTextComponentSubstringPlayerName("Safe Zone")
+		EndTextCommandSetBlipName(blip)
+		
+	end
 		while true do
 		local Sleep = 2000
 		if ESX.IsPlayerLoaded() then 
@@ -50,14 +67,14 @@ end
 
 CreateThread(function()
   while true do
-    local Sleep = 10
+    local Sleep = 1
 
 		for i=1, #CreatedZombies do
 			local Zombie = CreatedZombies[i]
 			local Coords = GetEntityCoords(PlayerPedId())
 			local ZombieCoords = GetEntityCoords(Zombie)
 
-			if GetEntityHealth(Zombie) <= 2 or #(Coords - ZombieCoords ) > 150 then 
+			if GetEntityHealth(Zombie) <= 2 or #(Coords - ZombieCoords ) > 90 or #(Config.SafeZone.Center - ZombieCoords) <= Config.SafeZone.radius then 
 				SetPedAsNoLongerNeeded(Zombie)
 				DeleteEntity(Zombie)
 				table.remove(CreatedZombies, i)
