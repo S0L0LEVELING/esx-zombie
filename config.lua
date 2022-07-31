@@ -38,7 +38,7 @@ Config.ItemLoot = {
 }
 
 Config.Blackout = true
-Config.MuteAmbience = true
+Config.DisableAmbience = true
 Config.NotHealthRecharge = true
 Config.SafeZone = {
 	Enabled = true,

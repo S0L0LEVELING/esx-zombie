@@ -69,3 +69,11 @@ function CreateZombies()
 	
 	CreatedZombies[#CreatedZombies + 1] = Zombie
 end
+
+if Config.Blackout then
+	SetArtificialLightsState(true)
+end
+
+if Config.DisableAmbience then
+	StartAudioScene('CHARACTER_CHANGE_IN_SKY_SCENE')
+end
