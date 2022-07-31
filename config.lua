@@ -15,10 +15,10 @@ Config.ZombieModels = {
 	},
 }
 
-Config.MaxZombies = 10
-Config.MinSpawnDistance = 20
-Config.MaxSpawnDistance = 40
-Config.DespawnDistance = 120
+Config.MaxZombies = 20
+Config.MinSpawnDistance = 5
+Config.MaxSpawnDistance = 20
+Config.DespawnDistance = 20
 
 Config.ZombieDropLoot = true
 
@@ -40,6 +40,7 @@ Config.ItemLoot = {
 Config.Blackout = true
 Config.DisableAmbience = true
 Config.NotHealthRecharge = true
+Config.NoPeds = true
 Config.SafeZone = {
 	Enabled = true,
 	Center = vector3(0,0,0),
